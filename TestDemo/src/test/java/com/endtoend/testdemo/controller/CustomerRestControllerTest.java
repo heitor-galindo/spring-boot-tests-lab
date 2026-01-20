@@ -34,7 +34,7 @@ class CustomerRestControllerTest {
         List.of(
             CustomerDTO.builder()
                 .id(1L)
-                .firstName("cust1")
+                .firstName("custm1")
                 .lastName("cust1")
                 .email("cust1@gmail.com")
                 .build(),
@@ -68,14 +68,14 @@ class CustomerRestControllerTest {
   void shouldGetCustomerById() throws Exception {
     Long id = 1L;
 
-    Mockito.when(customerService.getCustomerById(id)).thenReturn(customers.get(0));
+    Mockito.when(customerService.getCustomerById(id)).thenReturn(customers.getFirst());
 
     mockMvc
         .perform(MockMvcRequestBuilders.get("/api/customers/{id}", id))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(
             MockMvcResultMatchers.content()
-                .json(objectMapper.writeValueAsString(customers.get(0))));
+                .json(objectMapper.writeValueAsString(customers.getFirst())));
   }
 
   @Test
@@ -112,13 +112,13 @@ class CustomerRestControllerTest {
         """
             {
               "id": 1,
-              "firstName": "cust1",
+              "firstName": "custm1",
               "lastName": "cust1",
               "email": "cust1@gmail.com"
             }
             """;
 
-    Mockito.when(customerService.saveNewCustomer(Mockito.any())).thenReturn(customers.get(0));
+    Mockito.when(customerService.saveNewCustomer(Mockito.any())).thenReturn(customers.getFirst());
 
     mockMvc
         .perform(
@@ -132,10 +132,10 @@ class CustomerRestControllerTest {
   @Test
   void testUpdateCustomer() throws Exception {
     Long customerId = 1L;
-    CustomerDTO customerDTO = customers.get(0);
+    CustomerDTO customerDTO = customers.getFirst();
 
     Mockito.when(customerService.updateCustomer(Mockito.eq(customerId), Mockito.any()))
-        .thenReturn(customers.get(0));
+        .thenReturn(customers.getFirst());
 
     mockMvc
         .perform(
