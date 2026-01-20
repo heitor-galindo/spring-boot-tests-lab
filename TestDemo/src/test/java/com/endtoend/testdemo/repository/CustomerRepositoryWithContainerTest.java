@@ -23,6 +23,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class CustomerRepositoryWithContainerTest {
   @Container @ServiceConnection
   private static PostgreSQLContainer container = new PostgreSQLContainer("postgres:16");
+
   @Autowired CustomerRepository customerRepository;
 
   @Test

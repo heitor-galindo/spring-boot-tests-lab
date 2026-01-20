@@ -1,4 +1,4 @@
-package com.endtoend.testdemo.mapper;
+package com.endtoend.testdemo.service;
 
 import com.endtoend.testdemo.dto.CustomerDTO;
 import com.endtoend.testdemo.entities.Customer;
